@@ -29,7 +29,7 @@ import VendorOrders from './vendorOrders';
 import VendorProfile from './vendorProfile';
 import VendorMail from './vendorMail';
 
-import d from './d8.jpg'
+//import d from './d8.jpg'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -46,6 +46,8 @@ import CustomerMail from './customerMail';
 
 import AboutUs from './aboutUs';
 import MenubarLogout from './components/NavBarLogout';
+import { Reviews } from '@mui/icons-material';
+import CardComponent from './components/ReviewsList';
 
 
 
@@ -73,7 +75,7 @@ function MainUI() {
       dispatch(Login())
     }
   }, [])
-  return (
+  return (<>
   <div>
     {loginStatus ?  logout && <MenubarLogout/> :  login && <Menubars/>}
     <Header></Header>
@@ -83,7 +85,8 @@ function MainUI() {
       <Col md={12}>
       
       <Row>
-        <div className=" mb-1'container-fluid'" style={{background: `url(${d})`, zoom: "103%"}}>
+        {/* <div className=" mb-1'container-fluid'" style={{background: `url(${d})`, zoom: "103%"}}> */}
+        <div className=" mb-1'container-fluid'" >
     <Switch>
       {/* <Route path='/' exact component={Home} /> */}
       {/* <Route path='/home' exact component={Home} /> */}
@@ -103,6 +106,7 @@ function MainUI() {
       <ProtectedAdmin path='/admin' exact component={AdminDashboard}/>
       <ProtectedRoute path='/contact' exact component={Contact} />
       <ProtectedRoute path='/addresses' exact component={Addresses} /> */}
+      <Route path='/reviews'  component={CardComponent}/>
 
 
        <Route path='/admin/categories' exact component={Categories}/>
@@ -139,9 +143,12 @@ function MainUI() {
     </Row>
     </Col>
     </Row>
-    <Footer />
-    
+    {/* <Footer /> */}
     </div>
+    <div>
+          <Footer />
+    </div>
+    </>
   )
 }
 

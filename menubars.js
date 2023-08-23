@@ -38,56 +38,99 @@ function Menubars(){
     }
     return (
       <div>
-        <nav className='navbar navbar-expand-lg bg-body-tertiary'>
-          <div className='container-fluid'>
-          <img src={appLogo} style={{ height: '60px', marginRight: '10px',zoom:'100%' }} />
-            <a className='navbar-brand'></a>
-            <button
-              className='navbar-toggler'
-              type='button'
-              data-bs-toggle='collapse'
-              data-bs-target='#navbarSupportedContent'
-              aria-controls='navbarSupportedContent'
-              aria-expanded='false'
-              aria-label='Toggle navigation'
-            >
-              <span className='navbar-toggler-icon'></span>
-            </button>
-            <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-              <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/home'>
-                    Home
-                  </Link>
-                </li>
-  
-                <li className='nav-item'>
-                  <Link className='nav-link' onClick={routeToDashboard}>
-                    Account
-                  </Link>
-                </li>
-  
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/aboutus'>
-                    About Us
-                  </Link>
-                </li>
-  
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/contact'>
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className='d-flex'>
-              <button onClick={SignIn} className='btn'>
-                Login
-              </button>
-            </div>
+      <nav className='navbar navbar-expand-lg navbar-light bg-body-tertiary'>
+        <div className='container-fluid'>
+          <img src={appLogo} style={{ height: '60px', marginRight: '10px', zoom: '100%' }} />
+          <a className='navbar-brand'></a>
+          <button
+            className='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarSupportedContent'
+            aria-controls='navbarSupportedContent'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+          >
+            <span className='navbar-toggler-icon'></span>
+          </button>
+          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+              <li className='nav-item'>
+                <Link className='nav-link' to='/home'>
+                  Home
+                </Link>
+              </li>
+    
+              <li className='nav-item'>
+                <Link className='nav-link' onClick={routeToDashboard}>
+                  Account
+                </Link>
+              </li>
+    
+              <li className='nav-item'>
+                <Link className='nav-link' to='/aboutus'>
+                  About Us
+                </Link>
+              </li>
+    
+              <li className='nav-item dropdown'>
+                <a
+                  className='nav-link dropdown-toggle'
+                  href='#'
+                  id='contactDropdown'
+                  role='button'
+                  data-bs-toggle='dropdown'
+                  aria-haspopup='true'
+                  aria-expanded='false'
+                >
+                  Contact
+                </a>
+                <div className='dropdown-menu' aria-labelledby='contactDropdown'>
+                  <a className='dropdown-item' href='#'>
+                    <i className='bi bi-facebook'></i> Facebook
+                  </a>
+                  <a className='dropdown-item' href='#'>
+                    <i className='bi bi-twitter'></i> Twitter
+                  </a>
+                  <a className='dropdown-item' href='#'>
+                    <i className='bi bi-instagram'></i> Instagram
+                  </a>
+                </div>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </div>
+          <div className='d-flex align-items-center'>
+            <button
+              onClick={SignIn}
+              className='btn btn-outline-primary btn-sm'
+              style={{
+                marginRight: '15px',
+                padding: '5px 15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              <i className='bi bi-person' style={{ fontSize: '20px', marginRight: '5px' }}></i>
+              Login
+            </button>
+            <button
+              className='btn btn-primary btn-sm'
+              style={{
+                padding: '5px 15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
     )
   //   return (<div style={{ paddingTop: '120px' }} className="content-wrapper">
   //   <header className="ml-2">

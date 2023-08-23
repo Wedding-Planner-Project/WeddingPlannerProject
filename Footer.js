@@ -100,6 +100,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './footer.css';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+
 
 function Footer() {
     return (
@@ -119,9 +121,10 @@ function Footer() {
 
                             </p>
                             <div className="footer-social">
-                                <a href=""><i className="fab fa-twitter"></i></a>
-                                <a href=""><i className="fab fa-facebook-f"></i></a>
-                                <a href=""><i className="fab fa-instagram"></i></a>
+                                <Link to='/home'><i className="fab fa-twitter"></i></Link>
+                                <Link to='/home'><i className="fab fa-facebook-f"></i></Link>
+                                <Link to='/home'><i className="fab fa-instagram"></i></Link>
+                                
                             </div>
                         </div>
                     </div>
@@ -138,9 +141,15 @@ function Footer() {
                     <div className="col-md-3 d-flex justify-content-right">
                         <div className="footer-links ">
                             <h5>Useful Links</h5>
-                            <a href="">Home</a>
-                            <a href="">Services </a>
-                            <a href="">Vendor</a>
+                            <Link className='nav-link' to='/home'>
+                              Home
+                            </Link>
+                            <Link className='nav-link' to='/home'>
+                              Services
+                            </Link>
+                            <Link className='nav-link' to='/vendor'>
+                              Vendor
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -157,7 +166,9 @@ function Footer() {
                         <div className="copy-menu d-flex justify-content-end">
                             <a href="">Terms</a>
                             <a href="">Privacy</a>
-                            <a href="">Contact</a>
+                            <Link className='nav-link' to='/contact'>
+                              Contact 
+                            </Link>
                         </div>
                     </div>
                     </div>
