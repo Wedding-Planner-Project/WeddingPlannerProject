@@ -47,10 +47,12 @@ function LoginUser() {
             let decoded = jwt_decode(jwt);
             let email = decoded.email;
             let role = decoded.role[0].authority;
+            console.log(jwt);
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("role", role);
             sessionStorage.setItem("Authorization", jwt);
             sessionStorage.setItem("isLoggedIn", true);
+            // sessionStorage.setItem("name", name);
 
             if (role === "ROLE_ADMIN") {
               navigate("/admin");
@@ -109,6 +111,10 @@ function LoginUser() {
               <div className="mb-3">
                 Don't have an account ?{" "}
                 <Link to={"/customer-registration"}>Register as customer</Link>
+              </div>
+              <div className="mb-3">
+                Don't have an account ?{" "}
+                <Link to={"/vendor-registration"}>Register as vendor</Link>
               </div>
               <div className="mb-3">
                 <button onClick={Authenticate} className="btn btn-success">

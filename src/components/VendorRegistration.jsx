@@ -6,10 +6,11 @@ import { Link, navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import regPagePhoto from "../resources/regPagePhoto.jpg";
+import { createUrl } from "../utils/utils";
 
-function CustomerRegistration() {
+function VendorRegistration() {
   const navigate = useNavigate();
-  const [customer, setCustomer] = useState({
+  const [vendor, setVendor] = useState({
     email: "",
     password: "",
     first_name: "",
@@ -18,6 +19,7 @@ function CustomerRegistration() {
     dob: "",
     gender: "",
     pincode: 0,
+    cmp_name: "",
   });
 
   //On Fail message
@@ -40,20 +42,20 @@ function CustomerRegistration() {
   }, []);
 
   const getState = () => {
-    axios
-      .get("http://localhost:7570/Project/aux/state")
-      .then(function (response) {
-        const states = response.data;
-        setStatesList(states);
-        // debugger;
-      });
+    const url = createUrl("/aux/state");
+    axios.get(url).then(function (response) {
+      const states = response.data;
+      setStatesList(states);
+      // debugger;
+    });
   };
   //On state select getting citylist
   const getCity = (args) => {
-    const statesSelected = args.target.value;
-    const cityUrl = "http://localhost:7570/Project/aux/city/" + statesSelected;
+    const url = createUrl("/aux/city/") + args.target.value;
+    // const statesSelected = args.target.value;
+    // const cityUrl = "http://localhost:7570/Project/aux/city/" + statesSelected;
     // debugger;
-    axios.get(cityUrl).then(function (response) {
+    axios.get(url).then(function (response) {
       const cities = response.data;
       setCityList(cities);
       // debugger;
@@ -62,10 +64,11 @@ function CustomerRegistration() {
 
   //On change city list
   const getPincode = (args) => {
-    const citySelected = args.target.value;
-    const pinUrl = "http://localhost:7570/Project/aux/pincode/" + citySelected;
+    // const citySelected = args.target.value;
+    const url = createUrl("/aux/pincode/") + args.target.value;
+    // const pinUrl = "http://localhost:7570/Project/aux/pincode/" + citySelected;
     debugger;
-    axios.get(pinUrl).then(function (response) {
+    axios.get(url).then(function (response) {
       const pincode = response.data;
       setPincodes(pincode);
       debugger;
@@ -74,26 +77,25 @@ function CustomerRegistration() {
 
   //OnChange handler
   const handleChange = (args) => {
-    const copyOfCustomer = { ...customer };
-    copyOfCustomer[args.target.name] = args.target.value;
-    setCustomer(copyOfCustomer);
+    const copyOfVendor = { ...vendor };
+    copyOfVendor[args.target.name] = args.target.value;
+    setVendor(copyOfVendor);
   };
 
   //On submit Register Function
   const Register = () => {
     // debugger;
-    const cData = { ...customer };
-    axios
-      .post("http://localhost:7570/Project/register/customer", cData)
-      .then((response) => {
-        const onRegister = response.data;
-        if (onRegister == true) {
-          toast.success("you are registered successfully");
-          navigate("/login");
-        } else {
-          toast.warning(onRegister["error"]);
-        }
-      });
+    const cData = { ...vendor };
+    const url = createUrl("/register/vendor");
+    axios.post(url, cData).then((response) => {
+      const onRegister = response.data;
+      if (onRegister == true) {
+        toast.success("you are registered successfully");
+        navigate("/login");
+      } else {
+        toast.warning(onRegister["error"]);
+      }
+    });
   };
 
   return (
@@ -115,10 +117,15 @@ function CustomerRegistration() {
     // </div>
     <div style={{ display: "flex", alignItems: "center" }}>
       <div>
-        <h1 style={{ textAlign: "center", margin: 10 }}>Register customer</h1>
+        <h1 style={{ textAlign: "center", margin: 10 }}>Register Vendor</h1>
         <div className="row">
           <div className="col">
-            <img src={regPagePhoto} alt="Image" style={{ marginTop: 100 }} />
+            <img
+              // src="React/demo/src/d.jpg"
+              src={regPagePhoto}
+              alt="Image"
+              style={{ marginTop: 100 }}
+            />
           </div>
           <div className="col"></div>
           <div className="col" style={{ columnWidth: 500 }}>
@@ -135,7 +142,7 @@ function CustomerRegistration() {
                   placeholder="Email"
                   required
                   style={{ width: 330 }}
-                  value={customer.email}
+                  value={vendor.email}
                   onChange={handleChange}
                 />
               </div>
@@ -151,7 +158,7 @@ function CustomerRegistration() {
                   id="inputPassword4"
                   placeholder="Password"
                   required
-                  value={customer.password}
+                  value={vendor.password}
                   onChange={handleChange}
                 />
               </div>
@@ -167,7 +174,7 @@ function CustomerRegistration() {
                 id="inputAddress"
                 placeholder="First Name"
                 required
-                value={customer.first_name}
+                value={vendor.first_name}
                 onChange={handleChange}
               />
             </div>
@@ -182,7 +189,23 @@ function CustomerRegistration() {
                 id="inputAddress2"
                 placeholder="Last Name"
                 required
-                value={customer.last_name}
+                value={vendor.last_name}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="mb3">
+              <label htmlFor="">
+                <b>Company Name</b>
+              </label>
+              <input
+                type="text"
+                class="form-control bg-transparent"
+                name="cmp_name"
+                id="inputAddress2"
+                placeholder="Company Name"
+                required
+                value={vendor.cmp_name}
                 onChange={handleChange}
               />
             </div>
@@ -198,7 +221,7 @@ function CustomerRegistration() {
                 placeholder="Mobile No."
                 pattern="^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$"
                 required
-                value={customer.mob_no}
+                value={vendor.mob_no}
                 onChange={handleChange}
               />
             </div>
@@ -212,7 +235,7 @@ function CustomerRegistration() {
                 name="dob"
                 id="inputAddress2"
                 required
-                value={customer.dob}
+                value={vendor.dob}
                 onChange={handleChange}
               />
             </div>
@@ -224,7 +247,7 @@ function CustomerRegistration() {
               <select
                 name="gender"
                 required
-                value={customer.gender}
+                value={vendor.gender}
                 className="form-control bg-transparent"
                 onChange={handleChange}
               >
@@ -250,14 +273,14 @@ function CustomerRegistration() {
                 })}
               </select>
             </div>
-            <div className="form-group ">
+            <div className="mb3">
               <label htmlFor="">
                 <b>City</b>
               </label>
               <select
                 name="city"
                 required
-                value={customer.city}
+                value={vendor.city}
                 className="form-control bg-transparent"
                 onChange={getPincode}
               >
@@ -274,7 +297,7 @@ function CustomerRegistration() {
               <select
                 name="pincode"
                 required
-                value={customer.pincode}
+                value={vendor.pincode}
                 className="form-control bg-transparent"
                 onChange={handleChange}
               >
@@ -287,7 +310,7 @@ function CustomerRegistration() {
             <div className="mb-3">
               <div className="mb3">
                 {" "}
-                Already have an account? <Link to="/"> Login here</Link>
+                Already have an account? <Link to="/login"> Login here</Link>
               </div>
 
               <button
@@ -309,4 +332,4 @@ function CustomerRegistration() {
   );
 }
 
-export default CustomerRegistration;
+export default VendorRegistration;
