@@ -1,0 +1,14 @@
+/* Menubars.css */
+.sticky-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030; /* Adjust this value as needed */
+  }
+  
+  /* Add some top margin to the content below the navbar */
+  body {
+    padding-top: 0px; /* Adjust this value based on your navbar's height */
+  }
+  
