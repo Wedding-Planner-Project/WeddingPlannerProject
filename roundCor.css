@@ -1,0 +1,28 @@
+/* Add rounded edges and other styling for the carousel container */
+.rounded-carousel-container {
+    height: 25px;
+    width: 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 1px;
+    display: inline-block;
+  }
+  
+  /* Style for the images inside the carousel */
+  .carousel-image {
+    height: 760px;
+    object-fit: cover;
+  }
+  
+  /* Style for the captions */
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 20px 20px;
+    padding: 20px;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
