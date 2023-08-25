@@ -1,0 +1,24 @@
+/* styles.css */
+
+/* Centered content */
+.centered-content {
+    text-align: center;
+  }
+  
+  /* Spacing */
+  .my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Background color for table headers */
+  .table-header-bg {
+    background-color: #343a40;
+    color: white;
+  }
+  
+  /* Transparent background for table cells */
+  .table-bg-transparent {
+    background-color: transparent;
+  }
+  

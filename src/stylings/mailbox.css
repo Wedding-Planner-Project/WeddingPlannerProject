@@ -1,0 +1,147 @@
+/* mailbox.css */
+
+/* Reset some default styles */
+body, h1, h2, p, button, input {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f5f5f5;
+  }
+  
+  .mailbox-container {
+    margin: 20px auto;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .mailbox-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .back-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 122px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px; /* Adjust the value for desired space */
+  }
+
+  .back-button:hover {
+    background-color: #444;
+  }
+  
+  .chat-wrapper {
+    display: flex;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 170px;
+}
+
+  .chat-list {
+    flex: 1;
+    padding: 20px;
+    margin-top: 45px;
+  }
+  
+  .chat-option {
+    background-color: #eee;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .chat-option:hover {
+    background-color: #ddd;
+  }
+  
+  .message-area {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .email-header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .message-list {
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .sent {
+    background-color: #d7f7db;
+    align-self: flex-end;
+    color: #333;
+  }
+  
+  .received {
+    background-color: #f0f0f0;
+    align-self: flex-start;
+    color: #333;
+  }
+  
+  .message-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .message-text-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+    margin-top: 125px;
+  }
+  
+  .send-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 122px;
+  }
+  
+  .send-button:hover {
+    background-color: #444;
+  }
+  

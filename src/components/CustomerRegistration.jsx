@@ -6,6 +6,7 @@ import { Link, navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import regPagePhoto from "../resources/regPagePhoto.jpg";
+import { createUrl } from "../utils/utils";
 
 function CustomerRegistration() {
   const navigate = useNavigate();
@@ -40,20 +41,20 @@ function CustomerRegistration() {
   }, []);
 
   const getState = () => {
-    axios
-      .get("http://localhost:7570/Project/aux/state")
-      .then(function (response) {
-        const states = response.data;
-        setStatesList(states);
-        // debugger;
-      });
+    const url = createUrl("/aux/state");
+    axios.get(url).then(function (response) {
+      const states = response.data;
+      setStatesList(states);
+      // debugger;
+    });
   };
   //On state select getting citylist
   const getCity = (args) => {
     const statesSelected = args.target.value;
-    const cityUrl = "http://localhost:7570/Project/aux/city/" + statesSelected;
+    const url = createUrl("/aux/city/") + statesSelected;
+    // const cityUrl = "http://localhost:7570/Project/aux/city/" + statesSelected;
     // debugger;
-    axios.get(cityUrl).then(function (response) {
+    axios.get(url).then(function (response) {
       const cities = response.data;
       setCityList(cities);
       // debugger;
@@ -63,9 +64,10 @@ function CustomerRegistration() {
   //On change city list
   const getPincode = (args) => {
     const citySelected = args.target.value;
-    const pinUrl = "http://localhost:7570/Project/aux/pincode/" + citySelected;
+    // const pinUrl = "http://localhost:7570/Project/aux/pincode/" + citySelected;
+    const url = createUrl("/aux/pincode/") + citySelected;
     debugger;
-    axios.get(pinUrl).then(function (response) {
+    axios.get(url).then(function (response) {
       const pincode = response.data;
       setPincodes(pincode);
       debugger;
@@ -83,8 +85,9 @@ function CustomerRegistration() {
   const Register = () => {
     // debugger;
     const cData = { ...customer };
+    const url = createUrl("/register/customer");
     axios
-      .post("http://localhost:7570/Project/register/customer", cData)
+      .post(url, cData)
       .then((response) => {
         const onRegister = response.data;
         if (onRegister == true) {
@@ -93,26 +96,13 @@ function CustomerRegistration() {
         } else {
           toast.warning(onRegister["error"]);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   return (
-    // // <div style={{display:"flex",width:"100%",height:900}}>
-    // // <div classNameName="p-5 mb-3 mx-4" style={{marginLeft:0, width: 700 ,height:900,backgroundColor:"white"}}>
-    // // <h1><b><i>Customer Registration Page</i></b></h1>
-    // {/* <form onSubmit={Register}> */}
-    // {/* <div style={{marginLeft:0, width: 600 ,height:900,backgroundColor:"white"}}> */}
-    // <div style={{display:"flex"}}>
-    //   <div className="col-md-3">
-    //     <div className="card">
-    //       <img
-    //       src={"./d.jpg"}
-    //       style={{height:"100%"}}
-    //       alt=""
-    //       />
-    //     </div>
-
-    // </div>
     <div style={{ display: "flex", alignItems: "center" }}>
       <div>
         <h1 style={{ textAlign: "center", margin: 10 }}>Register customer</h1>
@@ -129,7 +119,7 @@ function CustomerRegistration() {
                 </label>
                 <input
                   type="email"
-                  className="form-control bg-transparent"
+                  className="form-control mb-3"
                   name="email"
                   id="inputEmail4"
                   placeholder="Email"
@@ -146,7 +136,7 @@ function CustomerRegistration() {
                 </label>
                 <input
                   type="password"
-                  className="form-control bg-transparent"
+                  className="form-control mb-3"
                   name="password"
                   id="inputPassword4"
                   placeholder="Password"
@@ -162,7 +152,7 @@ function CustomerRegistration() {
               </label>
               <input
                 type="text"
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 name="first_name"
                 id="inputAddress"
                 placeholder="First Name"
@@ -177,7 +167,7 @@ function CustomerRegistration() {
               </label>
               <input
                 type="text"
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 name="last_name"
                 id="inputAddress2"
                 placeholder="Last Name"
@@ -192,7 +182,7 @@ function CustomerRegistration() {
               </label>
               <input
                 type="text"
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 name="mob_no"
                 id="inputAddress2"
                 placeholder="Mobile No."
@@ -208,7 +198,7 @@ function CustomerRegistration() {
               </label>
               <input
                 type="date"
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 name="dob"
                 id="inputAddress2"
                 required
@@ -225,7 +215,7 @@ function CustomerRegistration() {
                 name="gender"
                 required
                 value={customer.gender}
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 onChange={handleChange}
               >
                 <option value="">--Select Gender--</option>
@@ -240,7 +230,7 @@ function CustomerRegistration() {
               </label>
               <select
                 name="state"
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 required
                 onChange={getCity}
               >
@@ -258,7 +248,7 @@ function CustomerRegistration() {
                 name="city"
                 required
                 value={customer.city}
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 onChange={getPincode}
               >
                 <option value="">--Select City--</option>
@@ -275,7 +265,7 @@ function CustomerRegistration() {
                 name="pincode"
                 required
                 value={customer.pincode}
-                className="form-control bg-transparent"
+                className="form-control mb-3"
                 onChange={handleChange}
               >
                 <option value="">--Select Pincode--</option>

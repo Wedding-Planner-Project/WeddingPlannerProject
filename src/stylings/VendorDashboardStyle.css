@@ -1,0 +1,39 @@
+.dashboard-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin: 10px;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff; /* Background color for cards */
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.card-button-style {
+    width: 100%;
+    margin-top: auto;
+    background-color: #007bff; /* Button background color */
+    border-color: #007bff; /* Button border color */
+}
+
+.recommendation-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Additional styling for responsiveness if needed */
+@media (max-width: 768px) {
+    .dashboard-card {
+        width: calc(50% - 20px);
+    }
+}
