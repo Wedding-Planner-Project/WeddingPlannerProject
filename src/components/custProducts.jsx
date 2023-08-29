@@ -3,12 +3,18 @@ import { navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { createUrl } from "../utils/utils";
-// import "../components/CustomerBrowse";
-import CustomerBrowse from "./custBrowse";
-function CustomerProduct(props) {
+import "../components/custBrowse";
+// import CustomerBrowse from "./custBrowse";
+import { useLocation } from "react-router-dom";
+function CustomerProduct() {
+  const location = useLocation();
+  const searchparams = new URLSearchParams(location.search);
+  const sid = searchparams.get("sid");
+  console.log(sid);
+
   let i = 1;
   const navigate = useNavigate();
-  console.log(props.location.state.sid);
+  // console.log(props.location.state.sid);
   const [product, setProduct] = useState({
     id: 0,
     servName: "",
@@ -31,7 +37,9 @@ function CustomerProduct(props) {
     vemail: "",
   });
   useEffect(() => {
-    const url = createUrl("/customer/service/") + props.location.state.sid;
+    debugger;
+    const url = createUrl("/customer/service/") + sid;
+    debugger;
     // const url =
     //   "http://localhost:7570/Project/customer/service/" +
     //   props.location.state.sid;

@@ -99,13 +99,14 @@ function CustomerProfile() {
 
   const updateProfile = () => {
     const data = { ...customer };
-    // const url =
-    //   createUrl("/customer/p/profile/") + sessionStorage.getItem("email");
     const url =
-      "http://localhost:7570/Project/customer/p/profile/" +
-      sessionStorage.getItem("email");
+      createUrl("/customer/p/profile/") + sessionStorage.getItem("email");
+    // const url =
+    //   "http://localhost:8080/Project/customer/p/profile/" +
+    //   sessionStorage.getItem("email");
     axios.put(url, data).then((response) => {
       const result = response.data;
+      debugger;
       if (result) {
         window.location.reload();
         toast.success("update successfully");

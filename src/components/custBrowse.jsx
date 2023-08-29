@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import CustomerProduct from "./custProducts";
 // import { createUrl } from "../utils/utils";
 
 function CustomerBrowse() {
@@ -54,11 +55,10 @@ function CustomerBrowse() {
       .catch((err) => {
         console.log(err);
       });
-    let sid = args.target.value;
-    navigate({
-      pathname: "/customer/browse/product",
-      state: { sid },
-    });
+    var sid = args.target.value;
+    
+    navigate(`/customer/browse/product?sid=${sid}`);
+   
   };
 
   var goBack = () => {

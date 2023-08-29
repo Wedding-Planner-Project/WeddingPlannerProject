@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../stylings/mailbox.css";
 import axios from "axios";
@@ -34,7 +34,7 @@ function CustomerMail() {
 
     axios.post(url, data).then((response) => {
       const res = response.data;
-      if (res == true) {
+      if (res === true) {
         window.location.reload();
       } else {
         toast.error(res);

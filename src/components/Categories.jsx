@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Categories() {
+  const navigate = useNavigate();
   //category list
   const [category, setCategory] = useState([]);
 
@@ -11,6 +12,7 @@ function Categories() {
 
   //api call to add service
   const addService = (args) => {
+    debugger;
     const url =
       "http://localhost:8080/Project/admin/addCategory/" + service.servName;
     axios
@@ -43,7 +45,9 @@ function Categories() {
       .catch((err) => {
         console.log(err);
       });
+    // navigate("/admin/categories");
     window.location.reload();
+    // this.forceUpdate();
   };
 
   //serila no.

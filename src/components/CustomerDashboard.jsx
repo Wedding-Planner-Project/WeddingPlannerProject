@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useHistory } from "react-router-dom";
 import { createUrl } from "../utils/utils";
 import { Button, Container, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,18 +14,19 @@ import "../stylings/CustomerDashboardStyle.css";
 function CustomerDashboard() {
   let i = 1;
   const navigate = useNavigate();
-
+  // const history = useHistory();
   const viewService = (args) => {
-    const url =
-      createUrl("/customer/behaviour/") +
-      sessionStorage.getItem("email") +
-      "/" +
-      args.target.value;
-    // const behaveUrl =
-    // "http://localhost:7570/Project/customer/behaviour/" +
+    // const url =
+    //   createUrl("/customer/behaviour/") +
     //   sessionStorage.getItem("email") +
     //   "/" +
     //   args.target.value;
+    // const behaveUrl =
+    const url =
+      "http://localhost:8080/Project/customer/behaviour/" +
+      sessionStorage.getItem("email") +
+      "/" +
+      args.target.value;
     axios
       .post(url)
       .then((response) => {
@@ -35,12 +36,19 @@ function CustomerDashboard() {
         console.log(err);
       });
     const sid = args.target.value;
-    navigate({ pathname: "/customer/browse/product", state: { sid } });
+    console.log("sid", sid);
+    // navigate({ pathname: "/customer/browse/product", state: sid });
+    navigate("/customer/browse/product", { state: { sid } });
+    // history.push({
+    //   pathname: "/customer/browse/product",
+    //   state: { sid },
+    // });
   };
 
   useEffect(() => {
     const url =
-      createUrl("/customer/p/recommend") + sessionStorage.getItem("email");
+      createUrl("/customer/p/recommend/") + sessionStorage.getItem("email");
+    // const url = "http://localhost:8080/Project/customer/p/recommend"
     axios
       .get(url)
       .then((response) => {

@@ -29,6 +29,7 @@ import Categories from "./components/Categories";
 import Addresses from "./components/Address";
 import VendorProfile from "./components/VendorProfile";
 import AboutUs from "./components/AboutUs";
+// import ProtectedAdmin from "./components/protectedAdmin";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
       <div>
         <ToastContainer></ToastContainer>
         <Routes>
+          {/* <Switch> */}
           <Route path="/" element={<ViewPage />} />
           <Route path="/home" element={<ViewPage />} />
           {/* Login router  */}
@@ -55,8 +57,8 @@ function App() {
             element={<CustomerRegistration />}
           />
           {/* Coustomer Dashboard */}
-          <Route path="/customer" element={<CustomerDashboard />} />
-          <Route path="/customer/browse" element={<CustomerBrowse />} />
+          <Route exact path="/customer" element={<CustomerDashboard />} />
+          <Route exact path="/customer/browse" element={<CustomerBrowse />} />
           <Route
             path="/customer/browse/product"
             element={<CustomerProduct />}
@@ -78,6 +80,7 @@ function App() {
 
           <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
+        {/* </Switch> */}
       </div>
       <Footer></Footer>
     </>

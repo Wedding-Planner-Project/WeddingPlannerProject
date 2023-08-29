@@ -108,7 +108,13 @@ function Customers() {
                 <td className="table-bg-transparent">
                   <b>{customer.address.state}</b>
                 </td>
-                {/* <button name="button" onClick={deleteCust} value={customer.email}>delete</button> */}
+                <button
+                  name="button"
+                  onClick={deleteCust}
+                  value={customer.email}
+                >
+                  delete
+                </button>
               </tr>
             </tbody>
           );

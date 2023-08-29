@@ -11,23 +11,14 @@ import { createUrl } from "../utils/utils";
 function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // let [userCredential, setUserCredential] = useState({
-  //   email: "",
-  //   password: "",
-  // });
+
   const navigate = useNavigate();
-  // const handleChange = (args) => {
-  //   let copyOfUserCredential = { ...userCredential };
-  //   copyOfUserCredential[args.target.name] = args.target.value;
-  //   setUserCredential(copyOfUserCredential);
-  // };
 
   let jwt;
 
   const Authenticate = () => {
     // if (userCredential.email.length === "") {
     if (email.length === 0) toast.error("Please enter Email");
-    // if (email.length === 0) alert("skdfhsdihv");
     // else if (userCredential.password.length === "") {
     else if (password.length === 0) toast.error("Please enter Password");
     else {
@@ -68,6 +59,7 @@ function LoginUser() {
         .catch(function (error) {
           let er = error;
           console.log(er);
+          toast.error("Email or Password is incorrect!");
         });
     }
   };
